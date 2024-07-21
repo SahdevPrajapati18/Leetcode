@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isPalindromeHelper(const string& filtered, int left, int right) {
+        if (left >= right)
+            return true;
+        if (filtered[left] != filtered[right])
+            return false;
+        return isPalindromeHelper(filtered, left + 1, right - 1);
+    }
+
+    bool isPalindrome(string s) {
+        string filtered;
+        for (char c : s) {
+            if (isalnum(c)) {
+                filtered += tolower(c);
+            }
+        }
+        return isPalindromeHelper(filtered, 0, filtered.size() - 1);
+    }
+};
